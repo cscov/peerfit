@@ -7,7 +7,6 @@ class PokerHands
   def initialize(players)
     @player_one_hand = players[:hand_one]
     @player_two_hand = players[:hand_two]
-    debugger
   end
 
   def self.parse_file(f, game_num)
