@@ -82,6 +82,14 @@ class PokerHands
       false
     end
   end
+
+  def has_four_of_a_kind?(hand)
+    values = self.hand_values(hand)
+    values.each do |val|
+      return true if values.count(val) == 4
+    end
+    false
+  end
 end
 
 all_hands = File.new("poker.txt")

@@ -123,4 +123,21 @@ RSpec.describe PokerHands do
       expect(game.has_straight_flush?(players[:hand_two])).to be false
     end
   end
+
+  describe "#has_four_of_a_kind?" do
+    let(:players) {
+      {
+        hand_one: %w(2C 2D 2H 2S 3C),
+        hand_two: %w(3H 4H QH KH TH)
+      }
+    }
+    it "returns true if a hand has four cards of the same value" do
+      game = PokerHands.new(players)
+      expect(game.has_four_of_a_kind?(players[:hand_one])).to be true
+    end
+    it "returns false if a hand does not have four cards of the same value" do
+      game = PokerHands.new(players)
+      expect(game.has_four_of_a_kind?(players[:hand_two])).to be false
+    end
+  end
 end
