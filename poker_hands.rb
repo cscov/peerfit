@@ -3,7 +3,7 @@ require "byebug"
 class PokerHands
   attr_accessor :player_one_hand, :player_two_hand
   attr_reader :f
-  RANKED_VALUES = %w(2 3 4 5 6 7 8 9 10 J Q K A)
+  RANKED_VALUES = %w(2 3 4 5 6 7 8 9 T J Q K A)
 
   def initialize(players)
     @player_one_hand = players[:hand_one]
@@ -16,6 +16,25 @@ class PokerHands
     hand_two = game[5..9]
 
     { hand_one: hand_one, hand_two: hand_two }
+  end
+
+  def sort_hand_by_value(hand)
+    value_hash = Hash.new
+    sorted_hand = []
+
+    hand.each do |card|
+      value = card[0]
+      suit = card[1]
+      sort_index = RANKED_VALUES.index(value)
+      value_hash[sort_index] = [value]
+      value_hash[sort_index].push(suit)
+    end
+    sorted_keys = value_hash.keys.sort
+    sorted_keys.each do |key|
+      card = value_hash[key].join
+      sorted_hand.push(card)
+    end
+    sorted_hand
   end
 
   def hand_values(hand)
@@ -41,6 +60,14 @@ class PokerHands
     values = self.hand_values(hand)
     if self.one_suit?(hand)
       values.all? { |val| royal_values.include?(val) }
+    else
+      false
+    end
+  end
+
+  def has_straight_flush?(hand)
+    if self.one_suit?(hand)
+
     else
       false
     end

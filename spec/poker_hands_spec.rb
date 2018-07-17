@@ -25,6 +25,20 @@ RSpec.describe PokerHands do
     end
   end
 
+  describe "#sort_hand_by_value" do
+    let(:players) {
+      {
+        hand_one: %w(2S 3H 4D 5C 6S),
+        hand_two: %w(TH KH 2H 4H 6H)
+      }
+    }
+    it "returns a sorted hand by poker values(lowest to highest)" do
+      game = PokerHands.new(players)
+      expect(game.sort_hand_by_value(players[:hand_one])).to eq(%w(2S 3H 4D 5C 6S))
+      expect(game.sort_hand_by_value(players[:hand_two])).to eq(%w(2H 4H 6H TH KH))
+    end
+  end
+
   describe "#hand_values" do
     let(:players) {
       {
@@ -83,6 +97,30 @@ RSpec.describe PokerHands do
     it "returns false if a player's hand does not have a royal flush" do
       game = PokerHands.new(players)
       expect(game.has_royal_flush?(non_royal)).to be false
+    end
+  end
+
+  describe "#has_straight_flush?" do
+    let(:players) {
+      { hand_one: %w(2S 3S 4S 5S 6S),
+        hand_two: %w(2H 3C 4H 5C 6H)}
+    }
+    let(:players2) {
+      { hand_one: %w(2S 3S 4S 5S 6S),
+        hand_two: %w(2H 5H 4H 7H 6H)}
+    }
+    it "returns true if a hand has consecutive values of the same suit" do
+      game = PokerHands.new(players)
+      expect(game.has_straight_flush?(players[:hand_one])).to be true
+      expect(game.has_straight_flush?(players[:hand_two])).to be false
+    end
+    it "returns false if a hand does not have consecutive values" do
+      game = PokerHands.new(players2)
+      expect(game.has_straight_flush?(players2[:hand_two])).to be false
+    end
+    it "returns false if a hand has multiple suits" do
+      game = PokerHands.new(players)
+      expect(game.has_straight_flush?(players[:hand_two])).to be false
     end
   end
 end
