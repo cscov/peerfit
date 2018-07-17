@@ -15,13 +15,13 @@ RSpec.describe PokerHands do
     let(:players) {
       {
         :hand_one => %w(2S 3S 4S 5S 6S),
-        :hand_two => %w(7S 8S 9S 10S JS)
+        :hand_two => %w(7S 8S 9S TS JS)
       }
     }
     it 'initializes a new game with two hands' do
       game = PokerHands.new(players)
       expect(game.player_one_hand).to eq(%w(2S 3S 4S 5S 6S))
-      expect(game.player_two_hand).to eq(%w(7S 8S 9S 10S JS))
+      expect(game.player_two_hand).to eq(%w(7S 8S 9S TS JS))
     end
   end
 
@@ -64,10 +64,10 @@ RSpec.describe PokerHands do
 
   describe "#has_royal_flush?" do
     let(:royal_flush) {
-      %w(10S JS QS KS AS)
+      %w(TS JS QS KS AS)
     }
     let(:non_royal) {
-      %w(10H JC QC KD AH)
+      %w(TH JC QC KD AH)
     }
     let (:players) {
       {

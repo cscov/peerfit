@@ -3,6 +3,7 @@ require "byebug"
 class PokerHands
   attr_accessor :player_one_hand, :player_two_hand
   attr_reader :f
+  RANKED_VALUES = %w(2 3 4 5 6 7 8 9 10 J Q K A)
 
   def initialize(players)
     @player_one_hand = players[:hand_one]
@@ -20,7 +21,7 @@ class PokerHands
   def hand_values(hand)
     values = []
     hand.each do |card|
-      values.push(card[0...card.length - 1])
+      values.push(card[0])
     end
 
     values
@@ -36,8 +37,10 @@ class PokerHands
   end
 
   def has_royal_flush?(hand)
+    royal_values = %w(T J K Q A)
+    values = self.hand_values(hand)
     if self.one_suit?(hand)
-
+      values.all? { |val| royal_values.include?(val) }
     else
       false
     end
