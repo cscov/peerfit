@@ -16,6 +16,19 @@ class PokerHands
 
     { hand_one: hand_one, hand_two: hand_two }
   end
+
+  def one_suit?(hand)
+    suits = []
+    hand.each do |card|
+      suits.push(card[card.length - 1])
+    end
+    first_suit = suits[0]
+    suits.all? { |suit| suit == first_suit }
+  end
+
+  def has_royal_flush?(hand)
+
+  end
 end
 all_hands = File.new("poker.txt")
 hand = PokerHands.new(PokerHands.parse_file(all_hands, 0))
