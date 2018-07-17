@@ -25,6 +25,19 @@ RSpec.describe PokerHands do
     end
   end
 
+  describe "#hand_values" do
+    let(:players) {
+      {
+        hand_one: %w(2S 4S 5S KS QS),
+        hand_two: %w(2H 4H 5H KH QH)
+      }
+    }
+    it "returns an array of a hand's values" do
+      game = PokerHands.new(players)
+      expect(game.hand_values(players[:hand_one])).to eq(%w(2 4 5 K Q))
+    end
+  end
+
   describe "#one_suit?" do
     let(:single_suit) {
       %w(2S 4S 6S 7S 9S)
