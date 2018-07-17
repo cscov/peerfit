@@ -6,8 +6,8 @@ class PokerHands
   RANKED_VALUES = %w(2 3 4 5 6 7 8 9 T J Q K A)
 
   def initialize(players)
-    @player_one_hand = players[:hand_one]
-    @player_two_hand = players[:hand_two]
+    @player_one_hand = self.sort_hand_by_value(players[:hand_one])
+    @player_two_hand = self.sort_hand_by_value(players[:hand_two])
   end
 
   def self.parse_file(f, game_num)
@@ -18,6 +18,7 @@ class PokerHands
     { hand_one: hand_one, hand_two: hand_two }
   end
 
+  # cards should be in the order shown in constant RANKED_VALUES
   def sort_hand_by_value(hand)
     value_hash = Hash.new
     sorted_hand = []
@@ -67,7 +68,16 @@ class PokerHands
 
   def has_straight_flush?(hand)
     if self.one_suit?(hand)
-
+      values = hand_values(hand)
+      i = 0
+      start_index = RANKED_VALUES.index(values[0])
+      while i < values.length - 1
+        # check for consecutive values
+        return false if RANKED_VALUES.index(values[i + 1]) !=
+        start_index + (i + 1)
+        i += 1
+      end
+      true
     else
       false
     end
