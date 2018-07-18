@@ -125,6 +125,21 @@ class PokerHands
       false
     end
   end
+
+  def has_two_pairs?(hand)
+    value_hash = Hash.new(0)
+    values = self.hand_values(hand)
+
+    values.each do |val|
+      value_hash[val] += 1
+    end
+
+    pair_count = 0
+    value_hash.each_value do |v|
+      pair_count += 1 if v == 2
+    end
+    pair_count == 2
+  end
 end
 
 all_hands = File.new("poker.txt")
