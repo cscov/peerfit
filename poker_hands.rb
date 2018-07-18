@@ -148,6 +148,10 @@ class PokerHands
     end
     pair_count
   end
+
+  def highest_card(hand)
+    self.hand_values(hand).last
+  end
 end
 
 all_hands = File.new("poker.txt")

@@ -274,4 +274,18 @@ RSpec.describe PokerHands do
       expect(game2.pair_count(players2[:hand_one])).to eq(0)
     end
   end
+
+  describe "#highest_card" do
+    let(:players) {
+      {
+        hand_one: %w(2C 5C KC QC AC),
+        hand_two: %w(2D 3D KH AD AH)
+      }
+    }
+    it "returns the highest valued card in a hand" do
+      game = PokerHands.new(players)
+      expect(game.highest_card(players[:hand_one])).to eq("A")
+      expect(game.highest_card(players[:hand_two])).to eq("A")
+    end
+  end
 end
