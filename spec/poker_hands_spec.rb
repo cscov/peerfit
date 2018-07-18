@@ -225,4 +225,53 @@ RSpec.describe PokerHands do
       expect(game.has_two_pairs?(players[:hand_two])).to be false
     end
   end
+
+  describe "#has_one_pair?" do
+    let(:players) {
+      {
+        hand_one: %w(2C 2D 4H 5C 6H),
+        hand_two: %w(2H 6D KC KH KD)
+      }
+    }
+    let(:players2) {
+      {
+        hand_one: %w(2C 2D 3C 3H 4D),
+        hand_two: %w(2H 3D 8C 9C TH)
+      }
+    }
+    it "returns true if the hand has one pair" do
+      game = PokerHands.new(players)
+      expect(game.has_one_pair?(players[:hand_one])).to be true
+    end
+    it "returns false if the hand has more than one pair" do
+      game = PokerHands.new(players2)
+      expect(game.has_one_pair?(players2[:hand_one])).to be false
+    end
+    it "returns false if the hand has no pairs" do
+      game = PokerHands.new(players)
+      expect(game.has_one_pair?(players2[:hand_two])).to be false
+    end
+  end
+
+  describe "#pair_count" do
+    let(:players) {
+      {
+        hand_one: %w(2C 3C 4C 4H 5D),
+        hand_two: %w(2H 2D 3H 3D 5C)
+      }
+    }
+    let(:players2) {
+      {
+        hand_one: %w(2C 3C 6C 4H 5D),
+        hand_two: %w(2H 2D 3H 3D 5C)
+      }
+    }
+    it "returns the number of pairs in a hand" do
+      game = PokerHands.new(players)
+      game2 = PokerHands.new(players2)
+      expect(game.pair_count(players[:hand_one])).to eq(1)
+      expect(game.pair_count(players[:hand_two])).to eq(2)
+      expect(game2.pair_count(players2[:hand_one])).to eq(0)
+    end
+  end
 end

@@ -67,7 +67,7 @@ class PokerHands
   end
 
   def has_straight_flush?(hand)
-     self.has_straight?(hand) && self.has_flush?(hand)
+    self.has_straight?(hand) && self.has_flush?(hand)
   end
 
   def has_four_of_a_kind?(hand)
@@ -127,6 +127,14 @@ class PokerHands
   end
 
   def has_two_pairs?(hand)
+    self.pair_count(hand) == 2
+  end
+
+  def has_one_pair?(hand)
+    self.pair_count(hand) == 1
+  end
+
+  def pair_count(hand)
     value_hash = Hash.new(0)
     values = self.hand_values(hand)
 
@@ -138,7 +146,7 @@ class PokerHands
     value_hash.each_value do |v|
       pair_count += 1 if v == 2
     end
-    pair_count == 2
+    pair_count
   end
 end
 
