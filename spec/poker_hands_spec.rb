@@ -174,4 +174,21 @@ RSpec.describe PokerHands do
       expect(game.has_flush?(players[:hand_two])).to be false
     end
   end
+
+  describe "#has_straight?" do
+    let(:players) {
+      {
+        hand_one: %w(2C 3S 4H 5D 6C),
+        hand_two: %w(5C 8C KC AC TC)
+      }
+    }
+    it "returns true if a hand has five consecutive values" do
+      game = PokerHands.new(players)
+      expect(game.has_straight?(players[:hand_one])).to eq true
+    end
+    it "returns false if a hand does not have five consecutive values" do
+      game = PokerHands.new(players)
+      expect(game.has_straight?(players[:hand_two])).to eq false
+    end
+  end
 end

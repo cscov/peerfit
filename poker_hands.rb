@@ -59,7 +59,7 @@ class PokerHands
   def has_royal_flush?(hand)
     royal_values = %w(T J K Q A)
     values = self.hand_values(hand)
-    if self.one_suit?(hand)
+    if self.has_flush?(hand)
       values.all? { |val| royal_values.include?(val) }
     else
       false
@@ -67,20 +67,7 @@ class PokerHands
   end
 
   def has_straight_flush?(hand)
-    if self.one_suit?(hand)
-      values = hand_values(hand)
-      i = 0
-      start_index = RANKED_VALUES.index(values[0])
-      while i < values.length - 1
-        # check for consecutive values
-        return false if RANKED_VALUES.index(values[i + 1]) !=
-        start_index + (i + 1)
-        i += 1
-      end
-      true
-    else
-      false
-    end
+     self.has_straight?(hand) && self.has_flush?(hand)
   end
 
   def has_four_of_a_kind?(hand)
@@ -109,6 +96,19 @@ class PokerHands
 
   def has_flush?(hand)
     one_suit?(hand)
+  end
+
+  def has_straight?(hand)
+    values = hand_values(hand)
+    i = 0
+    start_index = RANKED_VALUES.index(values[0])
+    while i < values.length - 1
+      # check for consecutive values
+      return false if RANKED_VALUES.index(values[i + 1]) !=
+      start_index + (i + 1)
+      i += 1
+    end
+    true
   end
 end
 
