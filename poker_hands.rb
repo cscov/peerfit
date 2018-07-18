@@ -87,7 +87,7 @@ class PokerHands
     end
 
     if value_hash.any? { |_, v| v == 2 } &&
-      value_hash.any? { |_, v| v == 3 }
+      self.has_three_of_a_kind?(hand)
       true
     else
       false
@@ -109,6 +109,21 @@ class PokerHands
       i += 1
     end
     true
+  end
+
+  def has_three_of_a_kind?(hand)
+    value_hash = Hash.new(0)
+    values = self.hand_values(hand)
+
+    values.each do |val|
+      value_hash[val] += 1
+    end
+
+    if value_hash.any? { |_, v| v == 3 }
+      true
+    else
+      false
+    end
   end
 end
 

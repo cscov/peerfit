@@ -191,4 +191,21 @@ RSpec.describe PokerHands do
       expect(game.has_straight?(players[:hand_two])).to eq false
     end
   end
+
+  describe "#has_three_of_a_kind?" do
+    let(:players) {
+      {
+        hand_one: %w(2C 2D 2H 5C 8H),
+        hand_two: %w(4C TH 7C 8C 5D)
+      }
+    }
+    it "returns true if the hand has three of the same value" do
+      game = PokerHands.new(players)
+      expect(game.has_three_of_a_kind?(players[:hand_one])).to be true
+    end
+    it "returns false if the hand does not have three of the same value" do
+      game = PokerHands.new(players)
+      expect(game.has_three_of_a_kind?(players[:hand_two])).to be false
+    end
+  end
 end
