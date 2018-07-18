@@ -4,6 +4,9 @@ class PokerHands
   attr_accessor :player_one_hand, :player_two_hand
   attr_reader :f
   RANKED_VALUES = %w(2 3 4 5 6 7 8 9 T J Q K A)
+  RANKED_WINNING_HANDS = %w(highest_value one_pair two_pair has_three_of_a_kind
+                            straight flush full_house four_of_a_kind straight_flush
+                            royal_flush )
 
   def initialize(players)
     @player_one_hand = self.sort_hand_by_value(players[:hand_one])
@@ -151,6 +154,16 @@ class PokerHands
 
   def highest_card(hand)
     self.hand_values(hand).last
+  end
+
+  def winner(hand1, hand2)
+    hand_one_highest = RANKED_VALUES.index(self.highest_card(hand1))
+    hand_two_highest = RANKED_VALUES.index(self.highest_card(hand2))
+    if hand_one_highest > hand_two_highest
+      hand1
+    else
+      hand2
+    end
   end
 end
 
