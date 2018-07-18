@@ -25,20 +25,6 @@ RSpec.describe PokerHands do
     end
   end
 
-  describe "#sort_hand_by_value" do
-    let(:players) {
-      {
-        hand_one: %w(2S 3H 4D 5C 6S),
-        hand_two: %w(TH KH 2H 4H 6H)
-      }
-    }
-    it "returns a sorted hand by poker values(lowest to highest)" do
-      game = PokerHands.new(players)
-      expect(game.sort_hand_by_value(players[:hand_one])).to eq(%w(2S 3H 4D 5C 6S))
-      expect(game.sort_hand_by_value(players[:hand_two])).to eq(%w(2H 4H 6H TH KH))
-    end
-  end
-
   describe "#hand_values" do
     let(:players) {
       {
