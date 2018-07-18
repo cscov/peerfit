@@ -10,9 +10,9 @@ class PokerHands
                             straight flush full_house four_of_a_kind straight_flush
                             royal_flush )
 
-  def initialize(players)
-    @player_one_hand = Hand.new(players[:hand_one])
-    @player_two_hand = Hand.new(players[:hand_two])
+  def initialize(hand1, hand2)
+    @player_one_hand = hand1
+    @player_two_hand = hand2
   end
 
   def self.parse_file(f, game_num)
@@ -184,4 +184,5 @@ class PokerHands
 end
 
 all_hands = File.new("poker.txt")
-hand = PokerHands.new(PokerHands.parse_file(all_hands, 0))
+hands = PokerHands.parse_file(all_hands, 0)
+game = PokerHands.new(hands[:hand_one], hands[:hand_two])

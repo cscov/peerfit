@@ -1,4 +1,5 @@
 require_relative "../poker_hands"
+require_relative "../hand"
 
 # RSpec.describe PokerHands, ".parse_file" do
 #   let(:hand_txt) { "2S 3S 4S 5S 6S 7S 8S 9S 10S JS" }
@@ -12,16 +13,16 @@ require_relative "../poker_hands"
 
 RSpec.describe PokerHands do
   describe "#initialize" do
-    let(:players) {
-      {
-        :hand_one => %w(2S 3S 4S 5S 6S),
-        :hand_two => %w(7S 8S 9S TS JS)
-      }
+    let(:hand1) {
+      %w(2S 3S 4S 5S 6S)
+    }
+    let(:hand2) {
+      %w(7S 8S 9S TS JS)
     }
     it 'initializes a new game with two hands' do
-      game = PokerHands.new(players)
-      expect(game.player_one_hand).to eq(%w(2S 3S 4S 5S 6S))
-      expect(game.player_two_hand).to eq(%w(7S 8S 9S TS JS))
+      game = PokerHands.new(hand1, hand2)
+      expect(game.player_one_hand).to eq(hand1)
+      expect(game.player_two_hand).to eq(hand2)
     end
   end
 
