@@ -106,6 +106,10 @@ class PokerHands
       false
     end
   end
+
+  def has_flush?(hand)
+    one_suit?(hand)
+  end
 end
 
 all_hands = File.new("poker.txt")

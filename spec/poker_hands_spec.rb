@@ -157,4 +157,21 @@ RSpec.describe PokerHands do
       expect(game.has_full_house?(players[:hand_two])).to be false
     end
   end
+
+  describe "#has_flush?" do
+    let(:players) {
+      {
+        hand_one: %w(2C 6C 8C TC AC),
+        hand_two: %w(2D 6H 7H 9C AH)
+      }
+    }
+    it "returns true when a hand has a single suit" do
+      game = PokerHands.new(players)
+      expect(game.has_flush?(players[:hand_one])).to be true
+    end
+    it "returns false wehn a hand has multiple suits" do
+      game = PokerHands.new(players)
+      expect(game.has_flush?(players[:hand_two])).to be false
+    end
+  end
 end
