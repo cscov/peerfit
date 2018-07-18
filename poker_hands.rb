@@ -90,6 +90,22 @@ class PokerHands
     end
     false
   end
+
+  def has_full_house?(hand)
+    value_hash = Hash.new(0)
+    values = self.hand_values(hand)
+
+    values.each do |val|
+      value_hash[val] += 1
+    end
+
+    if value_hash.any? { |_, v| v == 2 } &&
+      value_hash.any? { |_, v| v == 3 }
+      true
+    else
+      false
+    end
+  end
 end
 
 all_hands = File.new("poker.txt")
