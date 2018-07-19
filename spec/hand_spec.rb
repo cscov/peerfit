@@ -86,4 +86,18 @@ RSpec.describe Hand do
     end
   end
 
+  describe "#has_straight?" do
+    let(:hand1) {
+        Hand.new(%w(2C 3S 4H 5D 6C))
+      }
+      let(:hand2) {
+        Hand.new(%w(5C 8C KC AC TC))
+      }
+    it "returns true if a hand has five consecutive values" do
+      expect(hand1.has_straight?).to eq true
+    end
+    it "returns false if a hand does not have five consecutive values" do
+      expect(hand2.has_straight?).to eq false
+    end
+  end
 end

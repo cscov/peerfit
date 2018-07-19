@@ -51,19 +51,6 @@ class PokerHands
     end
   end
 
-  def has_straight?(hand)
-    values = hand_values(hand)
-    i = 0
-    start_index = RANKED_VALUES.index(values[0])
-    while i < values.length - 1
-      # check for consecutive values
-      return false if RANKED_VALUES.index(values[i + 1]) !=
-      start_index + (i + 1)
-      i += 1
-    end
-    true
-  end
-
   def has_three_of_a_kind?(hand)
     value_hash = Hash.new(0)
     values = self.hand_values(hand)

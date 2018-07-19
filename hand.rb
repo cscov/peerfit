@@ -61,6 +61,19 @@ class Hand
     end
   end
 
+  def has_straight?
+    values = self.hand_values
+    i = 0
+    start_index = RANKED_VALUES.index(values[0])
+    while i < values.length - 1
+      # check for consecutive values
+      return false if RANKED_VALUES.index(values[i + 1]) !=
+      start_index + (i + 1)
+      i += 1
+    end
+    true
+  end
+
   def <=>(other)
 
   end
