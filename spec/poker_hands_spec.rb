@@ -75,6 +75,12 @@ RSpec.describe PokerHands do
     let(:four_hand2) {
       Hand.new(%w(2C 2S 2D 3D 3H))
     }
+    let(:straight_flush_hand1) {
+      Hand.new(%w(2C 3C 4C 5C 6C))
+    }
+    let(:straight_flush_hand2) {
+      Hand.new(%w(2C 8C 9C TC JC))
+    }
     it "returns the winning hand when the highest-valued card wins" do
       game = PokerHands.new(high_val_hand1, high_val_hand2)
       expect(game.winner(high_val_hand1, high_val_hand2)).to eq(high_val_hand2)
@@ -103,12 +109,14 @@ RSpec.describe PokerHands do
       game = PokerHands.new(full_hand1, full_hand2)
       expect(game.winner(full_hand1, full_hand2)).to eq(full_hand1)
     end
-    # four of a kind
     it "returns the winning hand when the four-of-a-kind hand wins" do
       game = PokerHands.new(four_hand1, four_hand2)
       expect(game.winner(four_hand1, four_hand2)).to eq(four_hand1)
     end
-    # straight flush
+    it "returns the winning hand when the straight-flush hand wins" do
+      game = PokerHands.new(straight_flush_hand1, straight_flush_hand2)
+      expect(game.winner(straight_flush_hand1, straight_flush_hand2)).to eq(straight_flush_hand1)
+    end
     # royal flush
     # tie breaker
   end
