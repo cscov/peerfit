@@ -199,4 +199,19 @@ RSpec.describe Hand do
       expect(hand3.pair_count).to eq(0)
     end
   end
+
+  describe "#has_two_pairs?" do
+    let(:hand1) {
+      Hand.new(%w(2C 2D 3C 3H 4D))
+    }
+    let(:hand2) {
+      Hand.new(%w(2H 3D 8C 9C TH))
+    }
+    it "returns true if the hand has two pairs of the same value" do
+      expect(hand1.has_two_pairs?).to be true
+    end
+    it "returns false if the hand does not have two pairs of the same value" do
+      expect(hand2.has_two_pairs?).to be false
+    end
+  end
 end

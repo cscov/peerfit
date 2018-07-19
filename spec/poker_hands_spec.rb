@@ -26,23 +26,6 @@ RSpec.describe PokerHands do
     end
   end
 
-  describe "#has_two_pairs?" do
-    let(:players) {
-      {
-        hand_one: %w(2C 2D 3C 3H 4D),
-        hand_two: %w(2H 3D 8C 9C TH)
-      }
-    }
-    it "returns true if the hand has two pairs of the same value" do
-      game = PokerHands.new(players)
-      expect(game.has_two_pairs?(players[:hand_one])).to be true
-    end
-    it "returns false if the hand does not have two pairs of the same value" do
-      game = PokerHands.new(players)
-      expect(game.has_two_pairs?(players[:hand_two])).to be false
-    end
-  end
-
   describe "#has_one_pair?" do
     let(:players) {
       {

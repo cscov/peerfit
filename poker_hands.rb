@@ -23,10 +23,6 @@ class PokerHands
     { hand_one: hand_one, hand_two: hand_two }
   end
 
-  def has_two_pairs?(hand)
-    self.pair_count(hand) == 2
-  end
-
   def has_one_pair?(hand)
     self.pair_count(hand) == 1
   end
