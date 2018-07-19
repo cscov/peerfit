@@ -26,30 +26,6 @@ RSpec.describe PokerHands do
     end
   end
 
-  describe "#has_royal_flush?" do
-    let(:royal_flush) {
-      %w(TS JS QS KS AS)
-    }
-    let(:non_royal) {
-      %w(TH JC QC KD AH)
-    }
-    let (:players) {
-      {
-        hand_one: royal_flush,
-        hand_two: non_royal
-      }
-    }
-
-    it "returns true if a player's hand has a royal flush" do
-      game = PokerHands.new(players)
-      expect(game.has_royal_flush?(royal_flush)).to be true
-    end
-    it "returns false if a player's hand does not have a royal flush" do
-      game = PokerHands.new(players)
-      expect(game.has_royal_flush?(non_royal)).to be false
-    end
-  end
-
   describe "#has_straight_flush?" do
     let(:players) {
       { hand_one: %w(2S 3S 4S 5S 6S),

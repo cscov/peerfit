@@ -70,4 +70,20 @@ RSpec.describe Hand do
     end
   end
 
+  describe "#has_royal_flush?" do
+    let(:royal_flush) {
+      Hand.new(%w(TS JS QS KS AS))
+    }
+    let(:non_royal) {
+      Hand.new(%w(TH JC QC KD AH))
+    }
+
+    it "returns true if a player's hand has a royal flush" do
+      expect(royal_flush.has_royal_flush?).to be true
+    end
+    it "returns false if a player's hand does not have a royal flush" do
+      expect(non_royal.has_royal_flush?).to be false
+    end
+  end
+
 end
