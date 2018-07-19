@@ -1,12 +1,11 @@
 require "byebug"
 class Hand
-  include Comparable
   attr_reader :cards
-
+  
   RANKED_VALUES = %w(2 3 4 5 6 7 8 9 T J Q K A)
   RANKED_WINNING_HANDS = %w(highest_value one_pair two_pair three_of_a_kind
                             straight flush full_house four_of_a_kind straight_flush
-                            royal_flush )
+                            royal_flush)
 
   def initialize(hand)
     @cards = self.sort_hand_by_value(hand)
@@ -176,7 +175,4 @@ class Hand
     end
   end
 
-  def <=>(other)
-
-  end
 end

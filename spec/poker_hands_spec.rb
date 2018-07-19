@@ -27,29 +27,26 @@ RSpec.describe PokerHands do
   end
 
   describe "#winner" do
-    let(:high_val_players) {
-      {
-        hand_one: %w(2C 4H 5D 6C 8C),
-        hand_two: %w(2H 4C 5H TH AH)
-      }
+    let(:high_val_hand1) {
+      Hand.new(%w(2C 4H 5D 6C 8C))
     }
-    let(:one_pair_players) {
-      {
-        hand_one: %w(2C 2H 3D 7C KC),
-        hand_two: %w(2D 4H 5D 6C 8C)
-      }
+    let(:high_val_hand2) {
+      Hand.new(%w(2H 4C 5H TH AH))
+    }
+    let(:one_pair_hand1) {
+      Hand.new(%w(2C 2H 3D 7C KC))
+    }
+    let(:one_pair_hand2) {
+      Hand.new(%w(2D 4H 5D 6C 8C))
     }
     it "returns the winning hand when the highest-valued card wins" do
-      game = PokerHands.new(high_val_players)
-      expect(game.winner(high_val_players[:hand_one],
-                         high_val_players[:hand_two]))
-                         .to eq(high_val_players[:hand_two])
+      game = PokerHands.new(high_val_hand1, high_val_hand2)
+      expect(game.winner(high_val_hand1, high_val_hand2)).to eq(high_val_hand2)
     end
     # one pair
     it "returns the winning hand when the single_pair hand wins" do
-      game = PokerHands.new(one_pair_players)
-      expect(game.winner(one_pair_players[:hand_one],
-                         one_pair_players[:hand_two])).to eq(one_pair_players[:hand_one])
+      game = PokerHands.new(one_pair_hand1, one_pair_hand2)
+      expect(game.winner(one_pair_hand1, one_pair_hand2)).to eq(one_pair_hand1)
     end
     # two pairs
     # three of a kind

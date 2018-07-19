@@ -19,24 +19,34 @@ class PokerHands
     { hand_one: hand_one, hand_two: hand_two }
   end
 
+  def highest_value_winner(hand1, hand2)
+    hand_one_highest = Hand::RANKED_VALUES.index(hand1.highest_card)
+    hand_two_highest = Hand::RANKED_VALUES.index(hand2.highest_card)
+    case hand_one_highest <=> hand_two_highest
+    when 1
+      hand1
+    when -1
+      hand2
+    when 0
+      if !hand1.empty?
+        self.highest_value_winner(hand1[0..hand1.length - 1],
+                                  hand2[0..hand2.length - 1])
+      end
+    end
+  end
+
   def winner(hand1, hand2)
-  #   hand_one_highest = RANKED_VALUES.index(self.highest_card(hand1))
-  #   hand_two_highest = RANKED_VALUES.index(self.highest_card(hand2))
-  #   hand_one_rank = self.hand_rank(hand1)
-  #   hand_two_rank = self.hand_rank(hand2)
-  #
-  #   if hand_one_rank < hand_two_rank
-  #     hand2
-  #   elsif hand_one_rank == hand_two_rank
-  #     while hand_one_rank == hand_two_rank
-  #
-  #     end
-  #   end
-  #   if hand_one_highest > hand_two_highest
-  #     hand1
-  #   else
-  #     hand2
-  #   end
+    hand_one_rank = hand1.hand_rank
+    hand_two_rank = hand2.hand_rank
+
+    case hand_one_rank <=> hand_two_rank
+    when 1
+      hand1
+    when -1
+      hand2
+    when 0
+      self.highest_value_winner(hand1, hand2)
+    end
   end
 end
 
