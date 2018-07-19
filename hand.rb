@@ -74,6 +74,10 @@ class Hand
     true
   end
 
+  def has_straight_flush?
+    self.has_straight? && self.has_flush?
+  end
+
   def <=>(other)
 
   end

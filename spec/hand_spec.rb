@@ -100,4 +100,26 @@ RSpec.describe Hand do
       expect(hand2.has_straight?).to eq false
     end
   end
+
+  describe "#has_straight_flush?" do
+    let(:hand1) {
+      Hand.new(%w(2S 3S 4S 5S 6S))
+    }
+    let(:hand2) {
+      Hand.new(%w(2H 3C 4H 5C 6H))
+    }
+    let(:hand3) {
+      Hand.new(%w(2H 5H 4H 7H 6H))
+    }
+    it "returns true if a hand has consecutive values of the same suit" do
+      expect(hand1.has_straight_flush?).to be true
+      expect(hand2.has_straight_flush?).to be false
+    end
+    it "returns false if a hand does not have consecutive values" do
+      expect(hand3.has_straight_flush?).to be false
+    end
+    it "returns false if a hand has multiple suits" do
+      expect(hand2.has_straight_flush?).to be false
+    end
+  end
 end

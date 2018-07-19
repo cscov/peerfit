@@ -26,30 +26,6 @@ RSpec.describe PokerHands do
     end
   end
 
-  describe "#has_straight_flush?" do
-    let(:players) {
-      { hand_one: %w(2S 3S 4S 5S 6S),
-        hand_two: %w(2H 3C 4H 5C 6H)}
-    }
-    let(:players2) {
-      { hand_one: %w(2S 3S 4S 5S 6S),
-        hand_two: %w(2H 5H 4H 7H 6H)}
-    }
-    it "returns true if a hand has consecutive values of the same suit" do
-      game = PokerHands.new(players)
-      expect(game.has_straight_flush?(players[:hand_one])).to be true
-      expect(game.has_straight_flush?(players[:hand_two])).to be false
-    end
-    it "returns false if a hand does not have consecutive values" do
-      game = PokerHands.new(players2)
-      expect(game.has_straight_flush?(players2[:hand_two])).to be false
-    end
-    it "returns false if a hand has multiple suits" do
-      game = PokerHands.new(players)
-      expect(game.has_straight_flush?(players[:hand_two])).to be false
-    end
-  end
-
   describe "#has_four_of_a_kind?" do
     let(:players) {
       {

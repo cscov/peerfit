@@ -23,10 +23,6 @@ class PokerHands
     { hand_one: hand_one, hand_two: hand_two }
   end
 
-  def has_straight_flush?(hand)
-    self.has_straight?(hand) && self.has_flush?(hand)
-  end
-
   def has_four_of_a_kind?(hand)
     values = self.hand_values(hand)
     values.each do |val|
