@@ -38,4 +38,21 @@ RSpec.describe Hand do
       expect(hand2.hand_values).to eq(%w(2 4 5 Q K))
     end
   end
+
+  describe "#one_suit?" do
+    let(:single_suit) {
+      Hand.new(%w(2S 4S 6S 7S 9S))
+    }
+    let(:multi_suit) {
+      Hand.new(%w(2H 4C 6H 7D 9D))
+    }
+
+    it "returns true if the player's hand is all one suit" do
+      expect(single_suit.one_suit?).to be true
+    end
+    it "returns false if the player's hand has multiple suits" do
+      expect(multi_suit.one_suit?).to be false
+    end
+  end
+
 end

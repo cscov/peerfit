@@ -26,30 +26,6 @@ RSpec.describe PokerHands do
     end
   end
 
-  describe "#one_suit?" do
-    let(:single_suit) {
-      %w(2S 4S 6S 7S 9S)
-    }
-    let(:multi_suit) {
-      %w(2H 4C 6H 7D 9D)
-    }
-    let(:players) {
-      {
-        hand_one: single_suit,
-        hand_two: multi_suit
-      }
-    }
-
-    it "returns true if the player's hand is all one suit" do
-      game = PokerHands.new(players)
-      expect(game.one_suit?(single_suit)).to be true
-    end
-    it "returns false if the player's hand has multiple suits" do
-      game = PokerHands.new(players)
-      expect(game.one_suit?(multi_suit)).to be false
-    end
-  end
-
   describe "#has_royal_flush?" do
     let(:royal_flush) {
       %w(TS JS QS KS AS)
