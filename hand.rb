@@ -91,6 +91,37 @@ class Hand
     false
   end
 
+  def has_three_of_a_kind?
+    value_hash = Hash.new(0)
+    values = self.hand_values
+
+    values.each do |val|
+      value_hash[val] += 1
+    end
+
+    if value_hash.any? { |_, v| v == 3 }
+      true
+    else
+      false
+    end
+  end
+
+  def has_full_house?
+    value_hash = Hash.new(0)
+    values = self.hand_values
+
+    values.each do |val|
+      value_hash[val] += 1
+    end
+
+    if value_hash.any? { |_, v| v == 2 } &&
+      self.has_three_of_a_kind?
+      true
+    else
+      false
+    end
+  end
+
   def <=>(other)
 
   end

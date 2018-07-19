@@ -26,40 +26,6 @@ RSpec.describe PokerHands do
     end
   end
 
-  describe "#has_full_house" do
-    let(:players) {
-      {
-        hand_one: %w(2S 2D 2H 3H 3D),
-        hand_two: %w(2C 3C 4C 5C 6C)
-      }
-    }
-    it "returns true if a hand has 3 of a kind and a pair" do
-      game = PokerHands.new(players)
-      expect(game.has_full_house?(players[:hand_one])).to be true
-    end
-    it "returns false if a hand does not have 3 of a kind and a pair" do
-      game = PokerHands.new(players)
-      expect(game.has_full_house?(players[:hand_two])).to be false
-    end
-  end
-
-  describe "#has_three_of_a_kind?" do
-    let(:players) {
-      {
-        hand_one: %w(2C 2D 2H 5C 8H),
-        hand_two: %w(4C TH 7C 8C 5D)
-      }
-    }
-    it "returns true if the hand has three of the same value" do
-      game = PokerHands.new(players)
-      expect(game.has_three_of_a_kind?(players[:hand_one])).to be true
-    end
-    it "returns false if the hand does not have three of the same value" do
-      game = PokerHands.new(players)
-      expect(game.has_three_of_a_kind?(players[:hand_two])).to be false
-    end
-  end
-
   describe "#has_two_pairs?" do
     let(:players) {
       {

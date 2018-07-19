@@ -152,4 +152,34 @@ RSpec.describe Hand do
       expect(hand2.has_four_of_a_kind?).to be false
     end
   end
+
+  describe "#has_three_of_a_kind?" do
+    let(:hand1) {
+      Hand.new(%w(2C 2D 2H 5C 8H))
+    }
+    let(:hand2) {
+      Hand.new(%w(4C TH 7C 8C 5D))
+    }
+    it "returns true if the hand has three of the same value" do
+      expect(hand1.has_three_of_a_kind?).to be true
+    end
+    it "returns false if the hand does not have three of the same value" do
+      expect(hand2.has_three_of_a_kind?).to be false
+    end
+  end
+
+  describe "#has_full_house" do
+    let(:hand1) {
+      Hand.new(%w(2S 2D 2H 3H 3D))
+    }
+    let(:hand2) {
+      Hand.new(%w(2C 3C 4C 5C 6C))
+    }
+    it "returns true if a hand has 3 of a kind and a pair" do
+      expect(hand1.has_full_house?).to be true
+    end
+    it "returns false if a hand does not have 3 of a kind and a pair" do
+      expect(hand2.has_full_house?).to be false
+    end
+  end
 end
