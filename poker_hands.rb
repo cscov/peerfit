@@ -48,8 +48,38 @@ class PokerHands
       self.highest_value_winner(hand1, hand2)
     end
   end
+
+  def count_player_one_wins(f)
+    player_one_wins = 0
+    i = 0
+    while i < 1000
+      hand1 = PokerHands.parse_file(f, i)[:hand_one]
+      hand2 = PokerHands.parse_file(f, i)[:hand_two]
+      if self.winner(hand1, hand2) == hand1
+        player_one_wins += 1
+      end
+      i += 1
+    end
+    "Player one wins #{player_one_wins} hands"
+  end
 end
 
-all_hands = File.new("poker.txt")
-hands = PokerHands.parse_file(all_hands, 0)
-game = PokerHands.new(hands[:hand_one], hands[:hand_two])
+# all_hands =
+player_one_wins = 0
+i = 0
+
+while i < 1000
+  # debugger
+  hands = PokerHands.parse_file(File.new("poker.txt"), i)
+  game = PokerHands.new(hands[:hand_one], hands[:hand_two])
+  # game.count_player_one_wins(all_hands)
+  hand1 = Hand.new(game.player_one_hand)
+  hand2 = Hand.new(game.player_two_hand)
+
+  if game.winner(hand1, hand2) == hand1
+    player_one_wins += 1
+  end
+  i += 1
+end
+
+puts "Player one wins #{player_one_wins} hands"
