@@ -141,6 +141,10 @@ class Hand
     self.pair_count == 2
   end
 
+  def has_one_pair?
+    self.pair_count == 1
+  end
+
   def <=>(other)
 
   end

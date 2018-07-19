@@ -214,4 +214,25 @@ RSpec.describe Hand do
       expect(hand2.has_two_pairs?).to be false
     end
   end
+
+  describe "#has_one_pair?" do
+    let(:hand1) {
+      Hand.new(%w(2C 2D 4H 5C 6H))
+    }
+    let(:hand2) {
+      Hand.new(%w(2C 2D 3C 3H 4D))
+    }
+    let(:hand3) {
+      Hand.new(%w(2H 3D 8C 9C TH))
+    }
+    it "returns true if the hand has one pair" do
+      expect(hand1.has_one_pair?).to be true
+    end
+    it "returns false if the hand has more than one pair" do
+      expect(hand2.has_one_pair?).to be false
+    end
+    it "returns false if the hand has no pairs" do
+      expect(hand3.has_one_pair?).to be false
+    end
+  end
 end
