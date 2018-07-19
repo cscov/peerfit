@@ -23,10 +23,6 @@ class PokerHands
     { hand_one: hand_one, hand_two: hand_two }
   end
 
-  def highest_card(hand)
-    self.hand_values(hand).last
-  end
-
   def hand_rank(hand)
     if self.has_royal_flush?(hand)
       RANKED_WINNING_HANDS.index("royal_flush")

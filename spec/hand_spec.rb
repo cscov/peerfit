@@ -235,4 +235,17 @@ RSpec.describe Hand do
       expect(hand3.has_one_pair?).to be false
     end
   end
+
+  describe "#highest_card" do
+    let(:hand1) {
+      Hand.new(%w(2C 5C KC QC AC))
+    }
+    let(:hand2) {
+      Hand.new(%w(2D 3D KH AD AH))
+    }
+    it "returns the highest valued card in a hand" do
+      expect(hand1.highest_card).to eq("A")
+      expect(hand2.highest_card).to eq("A")
+    end
+  end
 end

@@ -145,6 +145,10 @@ class Hand
     self.pair_count == 1
   end
 
+  def highest_card
+    self.hand_values.last
+  end
+
   def <=>(other)
 
   end
