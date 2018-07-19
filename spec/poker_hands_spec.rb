@@ -39,17 +39,35 @@ RSpec.describe PokerHands do
     let(:one_pair_hand2) {
       Hand.new(%w(2D 4H 5D 6C 8C))
     }
+    let(:two_pair_hand1) {
+      Hand.new(%w(2C 2H 3H 3C AH))
+    }
+    let(:two_pair_hand2) {
+      Hand.new(%w(2D 4H 5D 6C 8C))
+    }
+    let(:three_pair_hand1) {
+      Hand.new(%w(2C 2D 2H 4H 5H))
+    }
+    let(:three_pair_hand2) {
+      Hand.new(%w(2S 4C 5D 6C 8C))
+    }
     it "returns the winning hand when the highest-valued card wins" do
       game = PokerHands.new(high_val_hand1, high_val_hand2)
       expect(game.winner(high_val_hand1, high_val_hand2)).to eq(high_val_hand2)
     end
-    # one pair
-    it "returns the winning hand when the single_pair hand wins" do
+    it "returns the winning hand when the single-pair hand wins" do
       game = PokerHands.new(one_pair_hand1, one_pair_hand2)
       expect(game.winner(one_pair_hand1, one_pair_hand2)).to eq(one_pair_hand1)
     end
-    # two pairs
+    it "returns the winning hand when the two-pair hand wins" do
+      game = PokerHands.new(two_pair_hand1, two_pair_hand2)
+      expect(game.winner(two_pair_hand1, two_pair_hand2)).to eq(two_pair_hand1)
+    end
     # three of a kind
+    it "returns the winning hand when the three-of-a-kind hand wins" do
+      game = PokerHands.new(three_pair_hand1, three_pair_hand2)
+      expect(game.winner(three_pair_hand1, three_pair_hand2)).to eq(three_pair_hand1)
+    end
     # straight
     # flush
     # full house

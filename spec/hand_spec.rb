@@ -251,15 +251,74 @@ RSpec.describe Hand do
 
   describe "#hand_rank" do
     let(:hand1) {
-      Hand.new(%w(2C 5C KC QD AC))
+      Hand.new(%w(2C 5C QD KC AC))
     }
     let(:hand2) {
       Hand.new(%w(2D 2H QH KD AH))
     }
-    it "determines the hand's rank returns the index of that rank in
+    let(:hand3) {
+      Hand.new(%w(2D 2H 3H 3D AH))
+    }
+    let(:hand4) {
+      Hand.new(%w(2D 2H 2C 3D AH))
+    }
+    let(:hand5) {
+      Hand.new(%w(2D 3H 4C 5D 6H))
+    }
+    let(:hand6) {
+      Hand.new(%w(2D 5D QD KD AD))
+    }
+    let(:hand7) {
+      Hand.new(%w(2D 2H 2C 3D 3H))
+    }
+    let(:hand8) {
+      Hand.new(%w(2D 2H 2C 2S 3H))
+    }
+    let(:hand9) {
+      Hand.new(%w(2D 3D 4D 5D 6D))
+    }
+    let(:hand10) {
+      Hand.new(%w(TD JD QD KD AD))
+    }
+    it "determines the hand's highest-value rank returns the index of that rank in
     RANKED_WINNING_HANDS" do
       expect(hand1.hand_rank).to eq(0)
-      expect(hand2.hand_rank).to eq(1)
+    end
+    it "determines the hand's one-pair rank returns the index of that rank in
+    RANKED_WINNING_HANDS" do
+    expect(hand2.hand_rank).to eq(1)
+    end
+    it "determines the hand's two-pair rank returns the index of that rank in
+    RANKED_WINNING_HANDS" do
+    expect(hand3.hand_rank).to eq(2)
+    end
+    it "determines the hand's three-of-a-kind rank returns the index of that rank in
+    RANKED_WINNING_HANDS" do
+    expect(hand4.hand_rank).to eq(3)
+    end
+    it "determines the hand's straight rank returns the index of that rank in
+    RANKED_WINNING_HANDS" do
+    expect(hand5.hand_rank).to eq(4)
+    end
+    it "determines the hand's flush rank returns the index of that rank in
+    RANKED_WINNING_HANDS" do
+    expect(hand6.hand_rank).to eq(5)
+    end
+    it "determines the hand's full-house rank returns the index of that rank in
+    RANKED_WINNING_HANDS" do
+    expect(hand7.hand_rank).to eq(6)
+    end
+    it "determines the hand's four-of-a-kind rank returns the index of that rank in
+    RANKED_WINNING_HANDS" do
+    expect(hand8.hand_rank).to eq(7)
+    end
+    it "determines the hand's straight-flush rank returns the index of that rank in
+    RANKED_WINNING_HANDS" do
+    expect(hand9.hand_rank).to eq(8)
+    end
+    it "determines the hand's royal-flush rank returns the index of that rank in
+    RANKED_WINNING_HANDS" do
+    expect(hand10.hand_rank).to eq(9)
     end
   end
 end

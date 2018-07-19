@@ -1,7 +1,7 @@
 require "byebug"
 class Hand
   attr_reader :cards
-  
+
   RANKED_VALUES = %w(2 3 4 5 6 7 8 9 T J Q K A)
   RANKED_WINNING_HANDS = %w(highest_value one_pair two_pair three_of_a_kind
                             straight flush full_house four_of_a_kind straight_flush
@@ -167,7 +167,7 @@ class Hand
     elsif self.has_three_of_a_kind?
       RANKED_WINNING_HANDS.index("three_of_a_kind")
     elsif self.has_two_pairs?
-      RANKED_WINNING_HANDS.index("two_pairs")
+      RANKED_WINNING_HANDS.index("two_pair")
     elsif self.has_one_pair?
       RANKED_WINNING_HANDS.index("one_pair")
     else
