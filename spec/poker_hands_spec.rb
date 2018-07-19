@@ -81,6 +81,18 @@ RSpec.describe PokerHands do
     let(:straight_flush_hand2) {
       Hand.new(%w(2C 8C 9C TC JC))
     }
+    let(:royal_flush_hand1) {
+      Hand.new(%w(TC JC QC KC AC))
+    }
+    let(:royal_flush_hand2) {
+      Hand.new(%w(2D JD QD KD AD))
+    }
+    let(:tiebreaker_hand1) {
+      Hand.new(%w(2C 2H 3C 3H 4D))
+    }
+    let(:tiebreaker_hand2) {
+      Hand.new(%w(2D 2S 3D 3S 7D))
+    }
     it "returns the winning hand when the highest-valued card wins" do
       game = PokerHands.new(high_val_hand1, high_val_hand2)
       expect(game.winner(high_val_hand1, high_val_hand2)).to eq(high_val_hand2)
@@ -117,7 +129,13 @@ RSpec.describe PokerHands do
       game = PokerHands.new(straight_flush_hand1, straight_flush_hand2)
       expect(game.winner(straight_flush_hand1, straight_flush_hand2)).to eq(straight_flush_hand1)
     end
-    # royal flush
-    # tie breaker
+    it "returns the winning hand when the royal-flush-hand wins" do
+      game = PokerHands.new(royal_flush_hand1, royal_flush_hand2)
+      expect(game.winner(royal_flush_hand1, royal_flush_hand2)).to eq(royal_flush_hand1)
+    end
+    it "returns the winning hand when a tiebreaking highest-value hand wins" do
+      game = PokerHands.new(tiebreaker_hand1, tiebreaker_hand2)
+      expect(game.winner(tiebreaker_hand1, tiebreaker_hand2)).to eq(tiebreaker_hand2)
+    end
   end
 end
