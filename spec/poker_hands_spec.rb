@@ -26,21 +26,6 @@ RSpec.describe PokerHands do
     end
   end
 
-  describe "#hand_rank" do
-    let(:players) {
-      {
-        hand_one: %w(2C 5C KC QD AC),
-        hand_two: %w(2D 2H QH KD AH)
-      }
-    }
-    it "determines the hand's rank returns the index of that rank in
-    RANKED_WINNING_HANDS" do
-      game = PokerHands.new(players)
-      expect(game.hand_rank(players[:hand_one])).to eq(0)
-      expect(game.hand_rank(players[:hand_two])).to eq(1)
-    end
-  end
-
   describe "#winner" do
     let(:high_val_players) {
       {

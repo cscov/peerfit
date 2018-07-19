@@ -4,6 +4,9 @@ class Hand
   attr_reader :cards
 
   RANKED_VALUES = %w(2 3 4 5 6 7 8 9 T J Q K A)
+  RANKED_WINNING_HANDS = %w(highest_value one_pair two_pair three_of_a_kind
+                            straight flush full_house four_of_a_kind straight_flush
+                            royal_flush )
 
   def initialize(hand)
     @cards = self.sort_hand_by_value(hand)
@@ -147,6 +150,30 @@ class Hand
 
   def highest_card
     self.hand_values.last
+  end
+
+  def hand_rank
+    if self.has_royal_flush?
+      RANKED_WINNING_HANDS.index("royal_flush")
+    elsif self.has_straight_flush?
+      RANKED_WINNING_HANDS.index("straight_flush")
+    elsif self.has_four_of_a_kind?
+      RANKED_WINNING_HANDS.index("four_of_a_kind")
+    elsif self.has_full_house?
+      RANKED_WINNING_HANDS.index("full_house")
+    elsif self.has_flush?
+      RANKED_WINNING_HANDS.index("flush")
+    elsif self.has_straight?
+      RANKED_WINNING_HANDS.index("straight")
+    elsif self.has_three_of_a_kind?
+      RANKED_WINNING_HANDS.index("three_of_a_kind")
+    elsif self.has_two_pairs?
+      RANKED_WINNING_HANDS.index("two_pairs")
+    elsif self.has_one_pair?
+      RANKED_WINNING_HANDS.index("one_pair")
+    else
+      0 # RANKED_WINNING_HANDS.index("highest_value")
+    end
   end
 
   def <=>(other)

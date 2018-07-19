@@ -248,4 +248,18 @@ RSpec.describe Hand do
       expect(hand2.highest_card).to eq("A")
     end
   end
+
+  describe "#hand_rank" do
+    let(:hand1) {
+      Hand.new(%w(2C 5C KC QD AC))
+    }
+    let(:hand2) {
+      Hand.new(%w(2D 2H QH KD AH))
+    }
+    it "determines the hand's rank returns the index of that rank in
+    RANKED_WINNING_HANDS" do
+      expect(hand1.hand_rank).to eq(0)
+      expect(hand2.hand_rank).to eq(1)
+    end
+  end
 end
