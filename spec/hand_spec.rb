@@ -182,4 +182,21 @@ RSpec.describe Hand do
       expect(hand2.has_full_house?).to be false
     end
   end
+
+  describe "#pair_count" do
+    let(:hand1) {
+      Hand.new(%w(2C 3C 4C 4H 5D))
+    }
+    let(:hand2) {
+      Hand.new(%w(2H 2D 3H 3D 5C))
+    }
+    let(:hand3) {
+      Hand.new(%w(2C 3C 6C 4H 5D))
+    }
+    it "returns the number of pairs in a hand" do
+      expect(hand1.pair_count).to eq(1)
+      expect(hand2.pair_count).to eq(2)
+      expect(hand3.pair_count).to eq(0)
+    end
+  end
 end

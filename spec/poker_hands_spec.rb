@@ -70,28 +70,6 @@ RSpec.describe PokerHands do
     end
   end
 
-  describe "#pair_count" do
-    let(:players) {
-      {
-        hand_one: %w(2C 3C 4C 4H 5D),
-        hand_two: %w(2H 2D 3H 3D 5C)
-      }
-    }
-    let(:players2) {
-      {
-        hand_one: %w(2C 3C 6C 4H 5D),
-        hand_two: %w(2H 2D 3H 3D 5C)
-      }
-    }
-    it "returns the number of pairs in a hand" do
-      game = PokerHands.new(players)
-      game2 = PokerHands.new(players2)
-      expect(game.pair_count(players[:hand_one])).to eq(1)
-      expect(game.pair_count(players[:hand_two])).to eq(2)
-      expect(game2.pair_count(players2[:hand_one])).to eq(0)
-    end
-  end
-
   describe "#highest_card" do
     let(:players) {
       {

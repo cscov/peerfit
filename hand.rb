@@ -122,6 +122,21 @@ class Hand
     end
   end
 
+  def pair_count
+    value_hash = Hash.new(0)
+    values = self.hand_values
+
+    values.each do |val|
+      value_hash[val] += 1
+    end
+
+    pair_count = 0
+    value_hash.each_value do |v|
+      pair_count += 1 if v == 2
+    end
+    pair_count
+  end
+
   def <=>(other)
 
   end
