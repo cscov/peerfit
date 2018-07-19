@@ -23,14 +23,6 @@ class PokerHands
     { hand_one: hand_one, hand_two: hand_two }
   end
 
-  def has_four_of_a_kind?(hand)
-    values = self.hand_values(hand)
-    values.each do |val|
-      return true if values.count(val) == 4
-    end
-    false
-  end
-
   def has_full_house?(hand)
     value_hash = Hash.new(0)
     values = self.hand_values(hand)

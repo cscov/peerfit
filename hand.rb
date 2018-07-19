@@ -1,4 +1,4 @@
-
+require "byebug"
 class Hand
   include Comparable
   attr_reader :cards
@@ -18,13 +18,18 @@ class Hand
       value = card[0]
       suit = card[1]
       sort_index = RANKED_VALUES.index(value)
-      value_hash[sort_index] = [value]
-      value_hash[sort_index].push(suit)
+      if !value_hash[sort_index]
+        value_hash[sort_index] = [[value, suit]]
+      else
+        value_hash[sort_index].push([value, suit])
+      end
     end
     sorted_keys = value_hash.keys.sort
     sorted_keys.each do |key|
-      card = value_hash[key].join
-      sorted_hand.push(card)
+      val_array = value_hash[key]
+      val_array.each do |card|
+        sorted_hand.push(card.join)
+      end
     end
     sorted_hand
   end
@@ -76,6 +81,14 @@ class Hand
 
   def has_straight_flush?
     self.has_straight? && self.has_flush?
+  end
+
+  def has_four_of_a_kind?
+    values = self.hand_values
+    values.each do |val|
+      return true if values.count(val) == 4
+    end
+    false
   end
 
   def <=>(other)
