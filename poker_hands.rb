@@ -23,16 +23,6 @@ class PokerHands
     { hand_one: hand_one, hand_two: hand_two }
   end
 
-  def has_royal_flush?(hand)
-    royal_values = %w(T J K Q A)
-    values = self.hand_values(hand)
-    if self.has_flush?(hand)
-      values.all? { |val| royal_values.include?(val) }
-    else
-      false
-    end
-  end
-
   def has_straight_flush?(hand)
     self.has_straight?(hand) && self.has_flush?(hand)
   end
@@ -59,10 +49,6 @@ class PokerHands
     else
       false
     end
-  end
-
-  def has_flush?(hand)
-    one_suit?(hand)
   end
 
   def has_straight?(hand)

@@ -47,6 +47,20 @@ class Hand
     suits.all? { |suit| suit == first_suit }
   end
 
+  def has_flush?
+    one_suit?
+  end
+
+  def has_royal_flush?
+    royal_values = %w(T J K Q A)
+    values = self.hand_values
+    if self.has_flush?
+      values.all? { |val| royal_values.include?(val) }
+    else
+      false
+    end
+  end
+
   def <=>(other)
 
   end

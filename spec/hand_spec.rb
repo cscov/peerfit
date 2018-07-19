@@ -55,4 +55,19 @@ RSpec.describe Hand do
     end
   end
 
+  describe "#has_flush?" do
+    let(:hand1) {
+      Hand.new(%w(2C 6C 8C TC AC))
+    }
+    let(:hand2) {
+      Hand.new(%w(2D 6H 7H 9C AH))
+    }
+    it "returns true when a hand has a single suit" do
+      expect(hand1.has_flush?).to be true
+    end
+    it "returns false wehn a hand has multiple suits" do
+      expect(hand2.has_flush?).to be false
+    end
+  end
+
 end
