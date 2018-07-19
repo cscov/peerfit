@@ -25,4 +25,17 @@ RSpec.describe Hand do
       expect(hand_two.sort_hand_by_value(hand2)).to eq(%w(2H 4H 6H TH KH))
     end
   end
+
+  describe "#hand_values" do
+    let(:hand1) {
+      Hand.new(%w(2S 4S 5S QS KS))
+    }
+    let(:hand2) {
+      Hand.new(%w(2H 4H 5H QH KH))
+    }
+    it "returns an array of a hand's values" do
+      expect(hand1.hand_values).to eq(%w(2 4 5 Q K))
+      expect(hand2.hand_values).to eq(%w(2 4 5 Q K))
+    end
+  end
 end

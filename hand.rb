@@ -29,6 +29,24 @@ class Hand
     sorted_hand
   end
 
+  def hand_values
+    values = []
+    self.cards.each do |card|
+      values.push(card[0])
+    end
+
+    values
+  end
+
+  def one_suit?
+    suits = []
+    self.cards.each do |card|
+      suits.push(card[card.length - 1])
+    end
+    first_suit = suits[0]
+    suits.all? { |suit| suit == first_suit }
+  end
+
   def <=>(other)
 
   end

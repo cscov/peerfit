@@ -23,24 +23,6 @@ class PokerHands
     { hand_one: hand_one, hand_two: hand_two }
   end
 
-  def hand_values(hand)
-    values = []
-    hand.each do |card|
-      values.push(card[0])
-    end
-
-    values
-  end
-
-  def one_suit?(hand)
-    suits = []
-    hand.each do |card|
-      suits.push(card[card.length - 1])
-    end
-    first_suit = suits[0]
-    suits.all? { |suit| suit == first_suit }
-  end
-
   def has_royal_flush?(hand)
     royal_values = %w(T J K Q A)
     values = self.hand_values(hand)
